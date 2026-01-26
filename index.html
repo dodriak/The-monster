@@ -425,12 +425,12 @@ tw-passage {
 }
 
 tw-story {
-	background: url(https://allwebs.ru/images/2026/01/19/1656a2e9bbd96c34f991a98562dc8df2.jpg) center center fixed no-repeat;
+	background: url(./kaps.jpg) center center fixed no-repeat;
 	background-size: cover;
 }
 
-/*tw-story[tags~="location_1"] {
-	background: url(./image/fon.jpg) center center fixed no-repeat;
+tw-story[tags~="location_1"] {
+	background: url(./les.jpg) center center fixed no-repeat;
 	background-size: cover;
 }
 /*
@@ -558,10 +558,10 @@ tw-sidebar {
 [[умения]]</tw-passagedata><tw-passagedata pid="15" name="умения" tags="" position="3575,325" size="100,100">(if: $lvl is 2)[(set: $umel1 to (prompt: &quot;Как назовете ваше умение?&quot;, &quot;Игнор&quot;))(set: $um to 1)(set: $um1 to 1)]
 (if: $lvl is 3)[(set: $umel2 to (prompt: &quot;Как назовете ваше умение?&quot;, &quot;Пинок&quot;))(set: $um to 1)(set: $um1 to 1)]
 (if: $lvl is 4)[(set: $umel3 to (prompt: &quot;Как назовете ваше умение?&quot;, &quot;Алкоголизм&quot;))(set: $um to 1)(set: $um1 to 1)]</tw-passagedata><tw-passagedata pid="16" name="hal.tracks" tags="" position="25,25" size="100,100">pocel: ./pocel.mp3
-pohvala: ./audio/pohvala.mp3
-bam-bam: ./audio/bam-bam.mp3</tw-passagedata><tw-passagedata pid="17" name="Inventory" tags="footer" position="25,150" size="100,100">{(if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
+les: ./les.mp3
+reca: ./reca.mp3</tw-passagedata><tw-passagedata pid="17" name="Inventory" tags="footer" position="25,150" size="100,100">{(if: (passage:)&#39;s tags contains &quot;Inventory&quot;) [
 ---
-Ваш инвертарь: (for: each _item, ...$inventory)[(link: _item&#39;s name) [(set: $selectedItem to _item)(goto: &quot;Item Description&quot;)](if: $inventory&#39;s last is not _item)[, ]]]
+Ваш способности и предмеды: (for: each _item, ...$inventory)[(link: _item&#39;s name) [(set: $selectedItem to _item)(goto: &quot;Item Description&quot;)](if: $inventory&#39;s last is not _item)[, ]]]
 (else-if: (passage:)&#39;s tags contains &quot;smer&quot;)[
 ---
 |end&gt;[Игра окончена! Вы проиграли. [[Начать заново|st001]]]]
@@ -577,55 +577,23 @@ bam-bam: ./audio/bam-bam.mp3</tw-passagedata><tw-passagedata pid="17" name="Inve
 (link: &quot;Назад&quot;) [
     (set: $previous to (history:)&#39;s last)
     (goto: $previous)
-]}</tw-passagedata><tw-passagedata pid="20" name="Startup" tags="startup" position="25,400" size="100,100">{(set:$med to 0)
-(set: $kark to (a: &quot;1&quot;, &quot;2&quot;, &quot;3&quot;))
-(set: $ingr to (a: &quot;1&quot;, &quot;2&quot;, &quot;3&quot;))
-(set: $hp to 100)
-(set: $lolo to 0)
-(set: $thp to 100)
-(set: $telo to 10)
-(set: $lovk to 10)
-(set: $sila to 10)
-(set: $lvl to 0)
-(set: $ruka to 0)
-(set: $tul to 0)
-(set: $nogi to 0)
+]}</tw-passagedata><tw-passagedata pid="20" name="Startup" tags="startup" position="25,400" size="100,100">{
 (set: $selectedItem to (dm:))
 (set: $inventory to (a:))
-(set: $salat to (dm:
+(set: $razved to (dm:
   &quot;id&quot;, 1,
-  &quot;name&quot;, &quot;ㅤсалат Сурими&quot;,
-  &quot;description&quot;, &quot;Это самый экзотический салат, что вы делали. Кукурец придал ему жёлто-зелёный цвет. Видимо, этот ингридиент способен окрасить что угодно в те цвета, в которые он их окрасит.&quot;,
+  &quot;name&quot;, &quot;ㅤразведка&quot;,
+  &quot;description&quot;, &quot;Пассивный навык. Все ваши чувства обостряются и вы способны замечать больше в окружающем вас пространстве.&quot;,
 ))
-(set: $ogurec to (dm:
+(set: $strem to (dm:
   &quot;id&quot;, 2,
-  &quot;name&quot;, &quot;ㅤкукурец&quot;,
-  &quot;description&quot;, &quot;Странного вида двухцветный предмет. Похож на огурец, но на месте пупырышков кукуруза. Какой-то безумный ученый вывел этот сорт в секретной биолаборатории.&quot;,
+  &quot;name&quot;, &quot;ㅤстремительность&quot;,
+  &quot;description&quot;, &quot;Активируемый навык. В битвах вы можете один раз за бой совершить стремительную атаку по противнику, нанесят много урона за раз.&quot;,
 ))
-(set: $iaca to (dm:
+(set: $jared to (dm:
   &quot;id&quot;, 3,
-  &quot;name&quot;, &quot;ㅤяйца&quot;, 
-  &quot;description&quot;, &quot;Без комментариев. Смотреть больно.&quot;,
-))
-(set: $crab to (dm:
-  &quot;id&quot;, 4,
-  &quot;name&quot;, &quot;ㅤклешня краба&quot;,
-  &quot;description&quot;, &quot;Огромная клешня краба.&quot;,
-))
-(set: $iashik to (dm:
-  &quot;id&quot;, 5,
-  &quot;name&quot;, &quot;ㅤящик сердец&quot;,
-  &quot;description&quot;, &quot;Увесистый ящик с собственной системой охлаждения. Внутри находится 4 человеческих сердца.&quot;,
-))
-(set: $kark1 to (dm:
-  &quot;id&quot;, 6,
-  &quot;name&quot;, &quot;ㅤКарта-ключ МП&quot;,
-  &quot;description&quot;, &quot;На обратной стороне было написано, что это ключ-карта от медпункта.&quot;,
-))
-(set: $kark3 to (dm:
-  &quot;id&quot;, 7,
-  &quot;name&quot;, &quot;ㅤКарта-ключ СТЛ&quot;,
-  &quot;description&quot;, &quot;На обратной стороне было написано, что это ключ-карта от столовой.&quot;,
+  &quot;name&quot;, &quot;ㅤкулон Жерара&quot;,
+  &quot;description&quot;, &quot;Золотое украшение с фотографиями внутри. Сейчас заляпано кровью. Ценная вещь для человека, который владел им ранее, но не для вас.&quot;,
 ))
 
 (set: $han1 to (dm:
@@ -654,22 +622,7 @@ bam-bam: ./audio/bam-bam.mp3</tw-passagedata><tw-passagedata pid="17" name="Inve
   &quot;mudar&quot;, &quot;удар лысой ногой&quot;,
   &quot;iadar&quot;, &quot;сильная вонь&quot;
   ))
-  (set: $dungeon to (array:
-      (a: 0,0,0,0,0,0,0,0,0,0,0),
-      (a: 0,1,1,1,0,1,1,1,1,1,0),
-      (a: 0,0,0,1,0,0,0,0,0,1,0),
-      (a: 0,1,0,1,1,1,1,1,0,1,0),
-      (a: 0,1,0,0,0,0,0,1,0,1,0),
-      (a: 0,1,1,1,1,1,1,1,0,1,0),
-      (a: 0,0,0,0,0,0,0,1,0,1,0),
-      (a: 0,1,0,1,1,1,1,1,1,1,0),
-      (a: 0,1,0,1,0,0,0,1,0,0,0),
-      (a: 0,1,1,1,0,1,1,1,1,2,0),
-      (a: 0,0,0,0,0,0,0,0,0,0,0)
-    )
-  )
-    (set: $positionX to 2)
-    (set: $positionY to 2)}</tw-passagedata><tw-passagedata pid="21" name="смерть" tags="" position="3325,75" size="100,100">Неправильный сосок. Выключение.</tw-passagedata><tw-passagedata pid="22" name="har" tags="" position="3575,75" size="100,100">Вас зовут $ima. Текущая версия: 10.07.66.$lvl.
+}</tw-passagedata><tw-passagedata pid="21" name="смерть" tags="" position="3325,75" size="100,100">Неправильный сосок. Выключение.</tw-passagedata><tw-passagedata pid="22" name="har" tags="" position="3575,75" size="100,100">Вас зовут $ima. Текущая версия: 10.07.66.$lvl.
 Количество </tw-passagedata><tw-passagedata pid="23" name="справка по характеристикам" tags="" position="1750,25" size="100,100">(нет во вступительной части)
 
 Справка по хартеристикам.
@@ -752,7 +705,7 @@ bam-bam: ./audio/bam-bam.mp3</tw-passagedata><tw-passagedata pid="17" name="Inve
 (if: $iashan is 1 and $iazash is 0)[(set: $iadmg to 0)(set: $iaprok to 0)]
 (else:) [(set: $iaprok to 1)]
 (set: $thp to it - $iadmg)
-(display: &quot;eme&quot;)(display: &quot;log2&quot;)(display: &quot;you2&quot;)}</tw-passagedata><tw-passagedata pid="28" name="st001" tags="" position="150,25" size="100,100">{(set: $end to 0)(set: $par to 0)
+(display: &quot;eme&quot;)(display: &quot;log2&quot;)(display: &quot;you2&quot;)}</tw-passagedata><tw-passagedata pid="28" name="st001" tags="" position="150,25" size="100,100">{(set: $end to 0)(set: $par to 0)(set: $inventory to (a:))
 Пробуждение было болезненным. Мир вокруг оказался зеленым. Рой пузырьков закружился вокруг, когда вы выдохнули. Бум! Снова этот звук удара, от которого вы проснулись. Бум! Опять. Огромный булыжник врезался в стекло колбы, в которой вы спокойно спали. В стекле образовались трещины. Раствор, что помогал вам спать, начал вытекать. Это сильно разозлило. Кто посмел? Половина раствора уже впиталась в землю под колбой. Ваша когтистая лапа в ярости сжалась. Значит придется вылезать.}
 (track: &#39;pocel&#39;, &#39;play&#39;)
 ▶ [[Разбить стекло|st]]</tw-passagedata><tw-passagedata pid="29" name="combat" tags="" position="2500,525" size="100,100">{(set: $raund1 to 0)
@@ -1643,13 +1596,14 @@ pobed1 $pobed1</tw-passagedata><tw-passagedata pid="135" name="бег" tags="" p
 {(set: $par to 1)
 (link: &quot;▶ Отвечайте&quot;)[
 (set: $kod to (prompt: &quot;Введите имя хозяйки:&quot;, &quot;&quot;))(if: $kod is &quot;Кларисса&quot;)[(go-to:&quot;yes&quot;)](else:)[(set: $end to 4)[(go-to:&quot;End&quot;)]]
-]}</tw-passagedata><tw-passagedata pid="152" name="st005" tags="" position="400,275" size="100,100">Все закончилось быстро. Мантия мага не защитила его от когтей, которые легко ранили, как острые ножи. Вы не слышали криков жертвы, наслаждаясь трапезой. Свежее мясо утолило ваш голод. Более того, отверстия в груди затянулись, и она перестала болеть. Стол был залит кровью, вы почувствовали прилив сил и быстро выскочили из пещеры. Инстинкты подсказали вам, что делать. Вам нужно найти логово в лесу. Сбежать из пещеры в случае угрозы было невозможно. Это было началом бесконечной охоты. Люди были очень вкусными, а значит, вы всегда будете сыты и полны энергии.
+]}</tw-passagedata><tw-passagedata pid="152" name="st005" tags="" position="400,275" size="100,100">Все закончилось быстро. Мантия мага не защитила его от когтей, которые легко ранили, как острые ножи. Вы не слышали криков жертвы, наслаждаясь трапезой. Свежее мясо утолило ваш голод. Более того, отверстия в груди затянулись, и она перестала болеть. Стол был залит кровью, вы почувствовали прилив сил. Инстинкты подсказали вам, что делать. Вам нужно найти логово в лесу. Сбежать из пещеры в случае угрозы было невозможно. Это было началом бесконечной охоты. Люди были очень вкусными, а значит, вы всегда будете сыты и полны энергии.
 
-Съев человека, вы получаете новый уровень и способности.
+Код для бейджа за прохождение первой части визуальной новеллы: T1K3E
 
-Первая часть визуальной новеллы завершена. Вот код для бейджа: T1K3E
+Съев человека, вы получаете новую способность. Выберите способность (можно выбрать только одну):
 
-[[Начать сначала|st001]]</tw-passagedata><tw-passagedata pid="153" name="startuem" tags="" position="25,525" size="100,100">Select a language
+(link: &quot;▶ Разведка&quot;)[(set: $inventory to $inventory + (a: $razved))(go-to:&quot;st006&quot;)]
+(link: &quot;▶ Стремительность&quot;)[(set: $inventory to $inventory + (a: $strem))(go-to:&quot;st006&quot;)]</tw-passagedata><tw-passagedata pid="153" name="startuem" tags="" position="25,525" size="100,100">Select a language
 (Выберите язык)
 
 ▶ [[RU|st001]]
@@ -1663,13 +1617,43 @@ pobed1 $pobed1</tw-passagedata><tw-passagedata pid="135" name="бег" tags="" p
 &lt;a href=&quot;https://x.com/DarkTableCCG&quot; target=&quot;_blank&quot;&gt;https://x.com/DarkTableCCG&lt;/a&gt;
 
 Я хочу привлечь к ней внимание людей, поэтому и создаю увлекательные истории. Желаю вам приятного чтения.]
+(link: &quot;Версии и что нового добавилось&quot;)[
+Версия 1.0:
+—  Демонстрируется возможность развилки сюжета.
+—  Фактор времени внутри истории.
+—  Тупиковые развилки с разными видами окончания игры.
+—  Первое задание с загадкой в виде слова.
+Версия 1.1:
+—  Демонстрируется смена музыки внутри истории.
+—  Смена фонового изображения.
+—  Появление способностей и инвентаря с возможностью прочитать их описание.
+—  Демонстрируется влияние предметов и способностей на ход истории.
+Версия 1.2 (скоро появится):
+—  Боевая система.
+—  Демонстрация применения активных способностей в бою.
+]
+
 (link: &quot;About the game&quot;)[The game is a visual novel in the genre of dark fantasy with many forks. At the moment, only a short introductory excerpt is available. The game is played from the person of your character. Please don&#39;t take everything that&#39;s happening to heart. All events and characters are fictional, and any coincidences are random. 
 
 I&#39;m creating the game alone. A purely amateur initiative. Unfortunately, I can&#39;t draw, so all the images were created using artificial intelligence. In this game you can also find the codes for the badges of my main community. &lt;a href=&quot;https://op.xyz/communities/dark-librarian&quot; target=&quot;_blank&quot;&gt;https://op.xyz/communities/dark-librarian&lt;/a&gt; 
 
 All the characters and leaders are also cards in another great game: &lt;a href=&quot;https://x.com/DarkTableCCG&quot; target=&quot;_blank&quot;&gt;https://x.com/DarkTableCCG&lt;/a&gt; 
 
-I want to draw people&#39;s attention to this, so I create fascinating stories. Have a nice reading.]</tw-passagedata><tw-passagedata pid="154" name="en001" tags="" position="150,400" size="100,100">{(set: $end to 0)(set: $par to 0)Waking up was painful. The world turned out to be green. A swarm of bubbles swirled around as you exhaled. Boom! That thumping sound that woke you up again. Boom! Again. A huge boulder crashed into the glass of the flask in which you were sleeping peacefully. Cracks formed in the glass. The solution that helped you sleep started leaking out. It made me very angry. Who dared? Half of the solution has already soaked into the ground under the flask. Your clawed hand clenched in rage. You&#39;ll have to get out of the flask}
+I want to draw people&#39;s attention to this, so I create fascinating stories. Have a nice reading.]
+(link: &quot;Versions and what&#39;s new&quot;)[
+Version 1.0:
+— Demonstrates the possibility of plot forks.
+— The time factor inside the story.
+— Dead-end forks with different game endings.
+— The first task with a riddle in the form of a word.
+Version 1.1:
+— Demonstrates the change of music within the story.
+— Change the background image.
+— The abilities added and inventory with the item. They have descriptions.
+— Demonstrates the influence of objects and abilities on the course of history.
+Version 1.2 (coming soon):
+— Combat system.
+— Demonstration of the use of active abilities in combat.]</tw-passagedata><tw-passagedata pid="154" name="en001" tags="" position="150,400" size="100,100">{(set: $end to 0)(set: $par to 0)(set: $inventory to (a:))Waking up was painful. The world turned out to be green. A swarm of bubbles swirled around as you exhaled. Boom! That thumping sound that woke you up again. Boom! Again. A huge boulder crashed into the glass of the flask in which you were sleeping peacefully. Cracks formed in the glass. The solution that helped you sleep started leaking out. It made me very angry. Who dared? Half of the solution has already soaked into the ground under the flask. Your clawed hand clenched in rage. You&#39;ll have to get out of the flask}
 (track: &#39;pocel&#39;, &#39;play&#39;)
 ▶ [[Break the glass|en002]]</tw-passagedata><tw-passagedata pid="155" name="en002" tags="" position="275,400" size="100,100">{|map&gt;[
 (display: &quot;Map2&quot;)]
@@ -1714,13 +1698,119 @@ He rubbed his cheek, which had an ugly claw scar. Traces of past humiliation. Yo
 
 The Kayra mentioned by the magician raised her arms and pointed her palms at you. It looks like they&#39;re not going to help you.
 ▶ (link: &quot;Jump aside, hiding behind a flask&quot;)[(set: $end to 2)(go-to:&quot;End2&quot;)]
-▶ (link: &quot;Jump forward right at the magicians&quot;)[(set: $end to 3)(go-to:&quot;End2&quot;)]]</tw-passagedata><tw-passagedata pid="162" name="en006" tags="" position="400,650" size="100,100">It was over quickly. The magician&#39;s robes did not protect he from the claws that easily cut like sharp knives. You didn&#39;t hear the victim&#39;s screams while enjoying the meal. Fresh meat satisfied your hunger. Moreover, the holes in the chest tightened and it stopped hurting. The table was covered in blood, you felt a surge of strength and quickly jumped out of the cave. Instincts told you what to do. You need to find a lair in the forest. It was impossible to escape from the cave in case of a threat. This was the beginning of an endless hunt. The people were very tasty, which means you will always be full and full of energy.
+▶ (link: &quot;Jump forward right at the magicians&quot;)[(set: $end to 3)(go-to:&quot;End2&quot;)]]</tw-passagedata><tw-passagedata pid="162" name="en006" tags="" position="400,650" size="100,100">It was over quickly. The magician&#39;s robes did not protect he from the claws that easily cut like sharp knives. You didn&#39;t hear the victim&#39;s screams while enjoying the meal. Fresh meat satisfied your hunger. Moreover, the holes in the chest tightened and it stopped hurting. The table was covered in blood, you felt a surge of strength. Instincts told you what to do. You need to find a lair in the forest. It was impossible to escape from the cave in case of a threat. This was the beginning of an endless hunt. The people were very tasty, which means you will always be full and full of energy.
 
 After eating a human, you have a new level and abilities.
 
 The first part of the visual novel is finished. Here is the badge code: T1K3E
 
-[[Start over|en001]]</tw-passagedata></tw-storydata>
+[[Start over|en001]]</tw-passagedata><tw-passagedata pid="163" name="st006" tags="Inventory" position="525,275" size="100,100">{(track: &#39;pocel&#39;, &#39;stop&#39;)Ваши способности будут показываться под чертой снизу. Каждая из них кликабельна и имеет описание. Можете ознакомиться с ней, а потом [[идти дальше|st007]].}</tw-passagedata><tw-passagedata pid="164" name="st007" tags="" position="525,150" size="100,100">Вы чувствуете себя уверенее с новой способностью. Пора двигаться дальше. Однако, после трапезы между клыков ощущается нечто твердое. Вы поковырялись там когтем и достали кулон. Смутные чувства как-будто из прошлой жизни полезли в голову. У вас тоже был такой кулон ранее, но вы не помнили зачем. Черный коготь раскрыл его. Вунтри были вставлены две фотографии рядом. Жерара и Кайры. Вы помотали головой, и беспокоящее вас чувство о прошлом исчезло. Инстинкты зверя снова пробудились. Возьмете ли вы этот кулон с собой?
+
+(link: &quot;▶ Взять&quot;)[(set: $inventory to $inventory + (a: $jared))(set: $kul to 1)(go-to:&quot;st008&quot;)]
+(link: &quot;▶ Не брать&quot;)[(set: $kul to 2)(go-to:&quot;st008&quot;)]</tw-passagedata><tw-passagedata pid="165" name="st008" tags="Inventory" position="525,25" size="100,100">{(if: $inventory contains $jared)[Ваши предметы будут показываться под чертой снизу. Каждый из них кликабелен и имеет описание. Можете ознакомиться с ним, а потом [[идти дальше|st009]].]
+(else:)[Ваши предметы будут показываться под чертой снизу. Каждый из них кликабелен и имеет описание. К сожалению, вы ничего не взяли, а значит он не добавился. Можете [[идти дальше|st009]].]}</tw-passagedata><tw-passagedata pid="166" name="st009" tags="" position="650,25" size="100,100">(if: $kul is 1)[Вы сжали кулон в своей когтистой лапе. Как будто нечто из прошлой жизни заставило вас это сделать. Но сейчас вы снова хищник.](if: $kul is 2)[Вы оставили кулон лежать рядом с костями мага. По неведомой причине ваша когтистая лапа положила его очень почтительно и аккуратно. Но сейчас вы хищник и вам ни к чему человеческие чувства.] Поэтому перешагнули через камни и вышли из пещеры. Солнце уже успело зайти за горизонт, что было выгодно. Нужно добраться до леса не привлекая лишнего внимания. Вы ускорили шаг, а потом и вовсе перешли на скачки, словно кузнечик. Ноги твари, которой вы стали, были прекрасно приспособлены для прыжков. Гораздо лучше, чем идти пешком или бежать. Черные когти сперва впивались в землю, а потом отталкивались и подбрасывали туловище вверх, а также вперед примерно на метр. Сперва приземления были неуклюжими и громкими, но вы быстро освоились и уже через пять минут все движения стали плавными, более тихими. Горная тропа вела вниз, в густую чащу леса. Надежное укрытие для монстра.
+
+[[Запрыгнуть в чащу|st010]]</tw-passagedata><tw-passagedata pid="167" name="st010" tags="location_1" position="650,150" size="100,100">{(if: $inventory contains $razved)[(track: &#39;reca&#39;, &#39;play&#39;)В лесу вы чувствовали себя как дома. Если вначале ваши когти царапали стволы деревьев, то затем вы инстинктивно стали этого избегать. Каждая упавшая веточка или листик ощущалась очень отчетливо и поэтому практически не оставалось следов. Способность разведки сильно пригодилась. Бодрость от насыщения быстро прошла и накатилась усталость. Нужно было срочно найти место для ночлега. И оно было выбрано идеально. Инстикнты привели к густым кустам, внутри которых, вы и организовали себе временное лежбище, незаметное снаружи. Кроме того окужить убежище не представлялось возможным. С одной стороны от кустов текла бурная река. Потоки воды орушивались вниз с порога, разбиваясь о камни. Люди просто не смогут ее пройти. Вы же легко перескочите. Закрыв глаза, вы погрузились в тревожные сноведение, Хотя они и были не столь яркими. Темные и размытые силуэты. Кажется, это была семья. Но чья? Уютный ночлег, тепло любимой рядом. Любимой? Вы забыли, что это значило и потому испытывали тревогу. По утру сон прервал чей-то крик. Голос был чем то похож на тот, который звучал во сне. Но этот был полнон презрения. Он и заставил вас [[проснуться|st014]].]
+(else:)[(track: &#39;les&#39;, &#39;play&#39;)Лес оказался не таким гостеприимным, как вам показалось вначале. Ваши когти царапали стволы деревьев, оставляя на них следы, а лапы то и дело ломали ветки и разбрасывали листву. Даже спустя пол часа блужданий, вы так и не смогли освоиться в лесу. Бодрость от насыщения прошла и накатилась усталость. Нужно было срочно найти место для ночлега. Увы, этого не получилось сделать. Не найдя ничего подходящего, вы просто легли между друх деревьев, прикрывшись листвой. Закрыв глаза, вы погрузились в тревожные сноведение, Хотя они и были не столь яркими. Темные и размытые силуэты. Кажется, это была семья. Но чья? Уютный ночлег, тепло любимой рядом. Любимой? Вы забыли, что это значило и потому испытывали тревогу. По утру сон прервал чей-то крик. Голос был чем то похож на тот, который звучал во сне. Но этот был полнон презрения. Он и заставил вас [[проснуться|st011]].]}</tw-passagedata><tw-passagedata pid="168" name="st011" tags="location_1" position="650,275" size="100,100"> — Выползай из своей норы, мерзкая тварь!  —  вопила Кайра.  —  Я знаю, что ты где-то рядом. Мы тебя окружили. Не сбежишь! Ты убил Жерара и я сама хочу поджарить тебя до хрустащей корочки. Очень медленно и наслаждаясь каждым моментом твоих страданий.
+(track: &#39;les&#39;, &#39;stop&#39;)
+Вы открыли глаза и увидели знакомую картину. Гвардейцев и магов за их спинами. Только теперь их было больше и они двигались в вашу сторону, сужая кольцо. Отступать действительно было некуда. Придеться драться. Внезапно вы ощутили как будто сознание разделяется и появляетмя кто-то другой. Это была Кларисса. Ваша новая хозяйка. Вы свободно могли читать ее мысли, а она ваши. &quot;Что это тут у нас? Хи-хи. Бешенная волшебница пришла мстить моей милой зверушке? Ясно-ясно&quot;. Кларисса взяла под контроль ваше тело. (if: $inventory contains $jared)[Затем подцепила когтем золотое украшение и открыла. &quot;Фу! Какая мерзость. Любовь — это так скучно. Но ее можно превратить в оружие. Ты молодец, что подобрал кулон, мой красавчик. Я помогу тебе&quot;. Заливаясь смехом, она порвала фотографию Жерара в кулоне, а потом начала раскручивать на когте цепочку и швырнула украшение прямо в Кайру. После этого вы вернули котроль над телом и начали лупить себя по голове, пытаясь избавиться от звечавшего в голове хохота Клариссы. Наконец-то он прекратился. Ее голос сказал напоследок: &quot;Порви все ее надежды, так же как это сделали со мой, моя зверушка&quot;, а потом пропал. Как будто у вас был выбор. В вашу сторону уже летел огненный шар. Нужно было прыгать, но куда?
+
+(link: &quot;▶ Вперед&quot;)[(set: $kul to 1)(go-to:&quot;st012&quot;)]
+(link: &quot;▶ Назад&quot;)[(set: $end to 1)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Вправо&quot;)[(set: $end to 2)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Влево&quot;)[(set: $end to 3)(go-to:&quot;st013&quot;)]]
+(else:)[Затем покачала вашей головой и заявила. &quot;Как скучно. Похоже я не смогу тебе помочь. Но я останусь с тобой до самого конца и буду наслаждаться каждым мгновением твоей прекрасной жизни.&quot; После этого вы вернули котроль над телом. Вовремя. В вашу сторону уже летел огненный шар. Нужно было прыгать, но куда?
+
+(link: &quot;▶ Вперед&quot;)[(set: $kul to 2)(go-to:&quot;st012&quot;)]
+(link: &quot;▶ Назад&quot;)[(set: $end to 1)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Вправо&quot;)[(set: $end to 2)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Влево&quot;)[(set: $end to 3)(go-to:&quot;st013&quot;)]]</tw-passagedata><tw-passagedata pid="169" name="st013" tags="smer location_1" position="775,275" size="100,100">{(if: $end is 1)[Голос Кайры призывал идти к ней, но вам было все равно на эту истеричку, главное выжить. Сзади никого не было и вы воодушевившись, начали прыгать в этом направлении. Внезапно из кустов полетело множество стрел. Очень скоро вы стали похожи на ежа, только уже неживого.]
+(if: $end is 2)[Голос Кайры призывал идти к ней, но вам было все равно на эту истеричку, главное выжить. Справа стоял отряд копейщиков. Вы попытались перескочить их, но пики были слишком длинными. Очень скоро ваше тело повисло на них в драматичной позе, красуясь в лучах солнечного света. Это утро стало для вас последним.]
+(if: $end is 3)[Голос Кайры призывал идти к ней, но вам было все равно на эту истеричку, главное выжить. Слева стоял отряд мечников, но их капитан под два метра ростом, вышел вперед, пожелав заработать репутацию истребителя монстров. Однако, заработал лишь рану на горле от вашего когтя, попавшего весьма точно между шлемом и достехом. Кольчуга, прикрывающая шею, не помогла. Очень скоро капитан корчился от боли подле ваших ног. Увы, дальше все сложилось плохо. Капитан вцепился в вашу ногу своей латной перчаткой, решив забрать с собой в могилу тварь, что его опозорила. Успешно. Прыгнуть не получилось. Уже в следующую секунду вас истыкали мечами его обозленные подчиненные.]
+(if: $end is 4)[Вы решили прыгнуть вперед прямо навтречу орущей от злости Кайре. Гвардейцы подошли, готовые зарубить чудовище. Кайра смогла обуздать свою ярость и это позволило ей отдать приказ отряду наброситься на чудовище всем вместе, не оставляя вам никаких шансов на выживание. Очень скоро она отправилась назад в город. Месть не принесла ей наслаждения, но ваша голова теперь будет украшать ее спальню.]
+(if: $end is 5)[Неудача. Огненный шар попал в вас и быстро превратил в обугленую тушу, а бешенная Кайра все кидала и и кидара их, пока не осталась только горстка пепла. Вы можете начать с [[точки сохранения|igr01]] и попробовать пройти игру заново.]}</tw-passagedata><tw-passagedata pid="170" name="st012" tags="location_1" position="775,150" size="100,100">(if: $inventory contains $jared)[Вы решили прыгнуть вперед прямо навтречу орушей от злости Кайре. Гвардейцы уже подошли, готовые зарубить чудовище, но истеричка их остановила.
+
+— Стоять! Оставьте его на меня. Да, как ты посмел убить Жерара, а потом еще и порвать его фотографию?!
+
+Девушка была в ярости. Ее глаза пылали огнем. Она явно хотела поединка 1 на 1. Но он был не совсем честным. Ее прикрывал отряд щитовиков, а вы были на опушке, которую окружили со всех сторон.
+
+— Прыгай пока можешь, кузнечик, а я буду этим наслаждаться. — шипя как змея выдавила из себя Кайра, а потом запустила орередной огненный шар. Теперь вам придется сыграть в игру по ее правилам в надежде, что представиться шанс сбежать.
+
+[[Начать игру|st015]]]
+(else:)[(set: $end to 4)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="171" name="st014" tags="location_1" position="775,25" size="100,100">Выползай из своей норы, мерзкая тварь! - вопила Кайра. - я знаю, что ты где-то рядом. Мы тебя окружили. Не сбежишь! Ты убил Жерара и я сама хочу прожарить тебя до хрустащей корочки. Очень медленно и наслаждаясь каждым моментом твоих страданий.
+(track: &#39;reca&#39;, &#39;stop&#39;)
+Вы открыли глаза и увидели знакомую картину. Гвардейцев и магов за их спинами. Только теперь их было больше и они двигались в вашу сторону, сужая кольцо. Но у вас уже имелся надежный план отхода. Вы моментально перескочили через реку и понеслись прочь под крики Кайры. Люди не способны остановить зверя, что доверяет своим инстинктам.
+
+Конец второй части. Код от бейджа:
+
+[[Начать заново|st001]]</tw-passagedata><tw-passagedata pid="172" name="st015" tags="location_1" position="900,150" size="100,100">Есть только одна дорога, ведущая к выживанию. Выбирайте направление с умом.
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr01&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="173" name="igr01" tags="location_1" position="1100,25" size="100,100">Успех. Вы выбрали правильную дорогу! Огренный шар упал рядом, лишь слегка опалив ноги. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr02&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="174" name="igr02" tags="location_1" position="1225,25" size="100,100">Снова верно. Огонь лишь слегка задел ваше предплечье. Шлепнв по нему, вы быстро сбили пламя. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr03&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="175" name="igr03" tags="location_1" position="1350,25" size="100,100">Невероятная удача. Вы вовремя подскочили вверх и развели ноги в стороны. Наверное, это было бы красиво, но в то же время опасно. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr04&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="176" name="igr04" tags="location_1" position="1350,150" size="100,100">Вас явно благословила богиня всех монстров, если такая существует. Нога зацепилась за ветку после очередного прыжка. Огренный шар пролетел над головой вместе с проклятьем Кайры. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(go-to:&quot;igr05&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="177" name="igr05" tags="location_1" position="1275,275" size="100,100">Вы случайно не используете читы? Так везти просто не может. Вы снова выбрали правильную дорогу! Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(go-to:&quot;igr06&quot;)]</tw-passagedata><tw-passagedata pid="178" name="igr06" tags="location_1" position="1150,275" size="100,100">В такое везение просто нереально поверить. Посмотрим как будет дальше. Что выбираешь?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(go-to:&quot;igr07&quot;)]</tw-passagedata><tw-passagedata pid="179" name="igr07" tags="location_1" position="1025,275" size="100,100">Без комментариев. Вроде бы вы не брали способность удачи. Хорошо куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(go-to:&quot;igr08&quot;)]</tw-passagedata><tw-passagedata pid="180" name="igr08" tags="location_1" position="900,300" size="100,100">Может уже стоит сдаться? Человек не способен пройти эту игру. Точно! Вы же монстр. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(go-to:&quot;igr09&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="181" name="igr09" tags="location_1" position="900,425" size="100,100">Наверное, вы думаете, что в конце вас ждет какой-то особый бонус. Нет. Просто забейте. Просто из интереса. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(go-to:&quot;igr10&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="182" name="igr10" tags="location_1" position="900,550" size="100,100">Какое бессмысленное упрямство. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(go-to:&quot;igr11&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="183" name="igr11" tags="location_1" position="1025,550" size="100,100">Хватит мучать себя и окружающих. Вы уже весь в саже от огненных шаров Кайры, а она чуть охрипла от проклятий. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr12&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="184" name="igr12" tags="location_1" position="1025,425" size="100,100">Ладно, вы большой молодец, что добрались до сюда. Куда дальше?
+
+(link: &quot;▶ Немного вперед&quot;)[(go-to:&quot;igr13&quot;)]
+(link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного вправо&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
+(link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]</tw-passagedata><tw-passagedata pid="185" name="igr13" tags="location_1" position="1150,425" size="100,100">Ваши ноги были уже черными и воняли гарью, как и все тело. Еще немного и вы не сможете прыгать. Но Кайра тоже тяжело дышала, похоже она больше не могла кидать огненные шары. Это ваш шанс на спасение. Впереди находилать только она. Однако придеться вступить в битву с единственным гвардейцем рядом. Другие отошли слишком далеко.
+
+Конец второй части. Код от бейджа:</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
