@@ -523,6 +523,8 @@ tw-sidebar {
 Ловкость: $lovk
 Очки умений: $och_um
 
+(link: &quot;▶ Hint&quot;)[Установите Силу на 7, Ловкость на 7, Телосложение на 6.]
+
 (link: &quot;Добавить +1 силы&quot;)[
 (set: $sila to it + 1)
 (set: $och_um to it - 1)
@@ -1134,10 +1136,14 @@ Your abilities and items: (for: each _item, ...$inventory)[(link: _item&#39;s na
 
 Нажмите &quot;+&quot;, а затем (link: &quot;прекратите&quot;)[(if: $test is &quot;ОООО&quot;)[(go-to: &quot;дааа&quot;)]] орать в нужный момент!</tw-passagedata><tw-passagedata pid="92" name="испытание" tags="location_2" position="1775,400" size="100,100">(if: $eng is 0)[Приблизительное расстояние до следующего ствола составляет: ===== метров.
 
+(link: &quot;▶ Hint&quot;)[Игру можно [[пропустить|пропуск2]]]
+
 &quot;▮=|chuv2&gt;[(display: &quot;расст1&quot;)]▶&quot;
 
 Нажмите &quot;+&quot;, а затем (link: &quot;прекратите&quot;)[(if: $test is &quot;====&quot;)[(go-to: &quot;ствол1&quot;)]] в нужный момент!]
 (if: $eng is 1)[The approximate distance to the next trunk is: ===== meters.
+
+(link: &quot;▶ Hint&quot;)[The game can be [[skipped|пропуск2]]]
 
 &quot;▮=|chuv2&gt;[(display: &quot;расст1&quot;)]▶&quot;
 
@@ -1620,11 +1626,15 @@ By eating a human, you gain a new ability. Select an ability (only one can be se
 (track: &#39;reca&#39;, &#39;stop&#39;)
 Вы открыли глаза и увидели знакомую картину. Гвардейцев и магов за их спинами. Только теперь их было больше и они двигались в вашу сторону, сужая кольцо. Но у вас уже имелся надежный план отхода. Вы моментально перескочили через реку и понеслись прочь под крики Кайры. Люди не способны остановить зверя, что доверяет своим инстинктам. Внезапно прямо рядом с вами появилась вспышка света. [[Посмотреть ближе|st016]].</tw-passagedata><tw-passagedata pid="166" name="st015" tags="location_1" position="900,275" size="100,100">(if: $eng is 0)[Есть только одна дорога, ведущая к выживанию. Выбирайте направление с умом.
 
+(link: &quot;▶ Hint&quot;)[Игру можно [[пропустить|пропуск1]]]
+
 (link: &quot;▶ Немного вперед&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
 (link: &quot;▶ Немного назад&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]
 (link: &quot;▶ Немного вправо&quot;)[(go-to:&quot;igr01&quot;)]
 (link: &quot;▶ Немного влево&quot;)[(set: $end to 5)(go-to:&quot;st013&quot;)]]
 (if: $eng is 1)[There is only one road leading to survival. Choose your direction wisely.
+
+(link: &quot;▶ Hint&quot;)[The game can be [[skipped|пропуск1]]]
 
 (link: &quot;▶ Forward&quot;)[(set: $end to 5)(go-to:&quot;en014&quot;)]
 (link: &quot;▶ Back&quot;)[(set: $end to 5)(go-to:&quot;en014&quot;)]
@@ -1962,6 +1972,8 @@ Power: $sila
 Dexterity: $lovk
 Skill Points: $och_um
 
+(link: &quot;▶ Hint&quot;)[Set Strength to 7, Dexterity to 7, Constitution to 6]
+
 (link: &quot;Add +1 power&quot;)[
 (set: $sila to it + 1)
 (set: $och_um to it - 1)
@@ -2041,7 +2053,7 @@ You quickly leaped over the guard and felled Kaira with one blow, slashing her c
 (display: &quot;zeme&quot;)(display: &quot;zlog3&quot;)(display: &quot;zyou2&quot;)}</tw-passagedata><tw-passagedata pid="219" name="zLose" tags="smer2 location_1" position="2150,150" size="100,100">{(if: $end is 1)[Kayra took advantage of the fact that you were distracted by the guardsman, or you did not find an opportunity to attack her herself. Very soon you were scorched by a fireball, and then the guardsman&#39;s sword completed the job.]
 (if: $end is 2)[(set: $thp to 50)Unfortunately, the guardsman turned out to be stronger than you in battle. You can start from [[save point|combat]] and try win to battle.]
 (if: $end is 3)[Your jump was great, but not accurate. You quickly plunged into the swamp muck and disappeared there. You can start from [[save point|испытание]] and try to complete the test again.]
-(if: $end is 4) [It was an intense battle with poison. Unfortunately, to no avail. At least your game lasted quite a long time.]}</tw-passagedata></tw-storydata>
+(if: $end is 4) [It was an intense battle with poison. Unfortunately, to no avail. At least your game lasted quite a long time.]}</tw-passagedata><tw-passagedata pid="220" name="пропуск1" tags="" position="1025,775" size="100,100">(go-to: &quot;igr13&quot;)</tw-passagedata><tw-passagedata pid="221" name="пропуск2" tags="" position="1775,775" size="100,100">(go-to: &quot;ствол3&quot;)</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
